@@ -2,11 +2,7 @@
 
 A small backend that discovers a UI workflow with an LLM and records a typed capability for deterministic replay. Includes a synthetic banking application, policy enforcement, explicit runtime outcomes, and an operator panel that controls the same live browser session.
 
-**Current verification status:** **27 unit/HTTP tests and 12 real-browser tests passed** on GitHub Actions. Genuine discovery reached OpenAI but was blocked at its first model call by **HTTP 429 / `insufficient_quota`**. [Verified run](https://github.com/adithyaharish/computer-use-automation/actions/runs/34792494940). The API account must have available credits/quota before the required discovery evidence can be generated. This repository is public, but **not yet submission-ready**. `config/example-capability.json` remains explicitly hand-authored and is not represented as discovery evidence.
-
-## Finish the outstanding API run
-
-The repository secret is configured, but OpenAI reports `insufficient_quota`. Check the billing/credits and project limits for the API account that owns that key. After resolving the quota issue, run **Actions → Validate and collect evidence → Run workflow → main**. This starts from the latest source. The successful workflow commits the verified evidence and updates the README/report automatically; failed runs do not claim success.
+**Verified:** 27 unit/HTTP tests and 12 real-browser tests passed. Genuine API-backed discovery, changed-input deterministic replay, exceptional outcomes, and same-session handoff are verified. Handoff uses a clearly labeled scripted operator client. [Verification run](https://github.com/adithyaharish/computer-use-automation/actions/runs/34793085419); [evidence](evidence/live-2026-09-14T00-34-58-020Z/).
 
 ## Requirements and setup
 

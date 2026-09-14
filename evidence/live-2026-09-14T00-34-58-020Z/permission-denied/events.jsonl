@@ -1,0 +1,8 @@
+{"time":"2026-09-14T00:35:12.282Z","runId":"9e3b5d0f-f3c2-406d-9ec1-c5ac4b988a40","event":"run_started","mode":"replay","modelCalls":0,"sessionId":"269fd5e4-c2ad-46b4-a169-a5ebcfefa1ea"}
+{"time":"2026-09-14T00:35:12.284Z","runId":"9e3b5d0f-f3c2-406d-9ec1-c5ac4b988a40","event":"artifact_loaded","name":"get_savings_balance","version":1,"sha256":"e6da4100a179df3ffca55a0662243291eb74ab4de80b6c9b1aa6efc016671b97"}
+{"time":"2026-09-14T00:35:12.427Z","runId":"9e3b5d0f-f3c2-406d-9ec1-c5ac4b988a40","event":"step_started","step":1,"action":"fill","target":"memberInput","reason":"execute_validated_action"}
+{"time":"2026-09-14T00:35:12.442Z","runId":"9e3b5d0f-f3c2-406d-9ec1-c5ac4b988a40","event":"step_completed","step":1,"action":"fill","target":"memberInput"}
+{"time":"2026-09-14T00:35:12.477Z","runId":"9e3b5d0f-f3c2-406d-9ec1-c5ac4b988a40","event":"step_started","step":2,"action":"click","target":"search","reason":"execute_validated_action"}
+{"time":"2026-09-14T00:35:12.556Z","runId":"9e3b5d0f-f3c2-406d-9ec1-c5ac4b988a40","event":"step_completed","step":2,"action":"click","target":"search"}
+{"time":"2026-09-14T00:35:12.567Z","runId":"9e3b5d0f-f3c2-406d-9ec1-c5ac4b988a40","event":"runtime_signal","step":3,"code":"PERMISSION_DENIED","kind":"hard"}
+{"time":"2026-09-14T00:35:12.676Z","runId":"9e3b5d0f-f3c2-406d-9ec1-c5ac4b988a40","event":"run_finished","status":"failure","code":"PERMISSION_DENIED"}

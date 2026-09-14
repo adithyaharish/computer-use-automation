@@ -1,0 +1,8 @@
+{"time":"2026-09-14T00:35:08.308Z","runId":"30336262-87b6-4ccf-b0bc-aef54850f1da","event":"run_started","mode":"replay","modelCalls":0,"sessionId":"0e6181b2-418e-4912-bb70-5222e4bd8cf1"}
+{"time":"2026-09-14T00:35:08.311Z","runId":"30336262-87b6-4ccf-b0bc-aef54850f1da","event":"artifact_loaded","name":"get_savings_balance","version":1,"sha256":"e6da4100a179df3ffca55a0662243291eb74ab4de80b6c9b1aa6efc016671b97"}
+{"time":"2026-09-14T00:35:08.449Z","runId":"30336262-87b6-4ccf-b0bc-aef54850f1da","event":"step_started","step":1,"action":"fill","target":"memberInput","reason":"execute_validated_action"}
+{"time":"2026-09-14T00:35:08.463Z","runId":"30336262-87b6-4ccf-b0bc-aef54850f1da","event":"step_completed","step":1,"action":"fill","target":"memberInput"}
+{"time":"2026-09-14T00:35:08.495Z","runId":"30336262-87b6-4ccf-b0bc-aef54850f1da","event":"step_started","step":2,"action":"click","target":"search","reason":"execute_validated_action"}
+{"time":"2026-09-14T00:35:08.538Z","runId":"30336262-87b6-4ccf-b0bc-aef54850f1da","event":"step_completed","step":2,"action":"click","target":"search"}
+{"time":"2026-09-14T00:35:08.542Z","runId":"30336262-87b6-4ccf-b0bc-aef54850f1da","event":"runtime_signal","step":3,"code":"MEMBER_NOT_FOUND","kind":"business"}
+{"time":"2026-09-14T00:35:08.645Z","runId":"30336262-87b6-4ccf-b0bc-aef54850f1da","event":"run_finished","status":"business_outcome","code":"MEMBER_NOT_FOUND"}

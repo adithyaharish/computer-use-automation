@@ -1,0 +1,49 @@
+{
+  "controls": [
+    {
+      "target": "memberInput",
+      "label": "Member ID",
+      "actions": [
+        "fill"
+      ],
+      "operatorActions": [
+        "fill"
+      ],
+      "risk": "policy-controlled"
+    },
+    {
+      "target": "search",
+      "label": "Search",
+      "actions": [
+        "click"
+      ],
+      "operatorActions": [
+        "click"
+      ],
+      "risk": "policy-controlled"
+    },
+    {
+      "target": "openSavings",
+      "label": "Open savings",
+      "actions": [
+        "click"
+      ],
+      "operatorActions": [
+        "click"
+      ],
+      "risk": "policy-controlled"
+    },
+    {
+      "target": "memberReference",
+      "label": "[aria-label=\"Member reference\"]",
+      "actions": [
+        "check"
+      ],
+      "operatorActions": [
+        "check"
+      ],
+      "risk": "policy-controlled"
+    }
+  ],
+  "signal": null
+}

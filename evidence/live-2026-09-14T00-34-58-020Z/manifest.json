@@ -1,0 +1,7 @@
+{
+  "genuineApiDiscovery": true,
+  "discoveryArtifact": "discovery/capability.json",
+  "replayUsesModel": false,
+  "humanHandoff": "Real browser and HTTP control transfer verified with a clearly labeled scripted operator client; not a real-human recording.",
+  "completedAt": "2026-09-14T00:35:13.940Z"
+}

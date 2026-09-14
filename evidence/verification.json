@@ -8,6 +8,5 @@
   "evidenceDirectory": "evidence/live-2026-09-14T00-34-58-020Z",
   "verifiedAt": "2026-09-14T00:35:13.996Z",
   "handoffActor": "scripted_operator_client",
-  "realHumanRecording": false,
-  "submissionReady": true
+  "realHumanRecording": false
 }

@@ -1,0 +1,9 @@
+{
+  "status": "success",
+  "outputs": {
+    "balance": "[REDACTED]",
+    "currency": "[REDACTED]"
+  },
+  "checkpointVerified": true,
+  "modelCalls": 0
+}

@@ -1,0 +1,40 @@
+{
+  "controls": [
+    {
+      "target": "memberInput",
+      "label": "Member ID",
+      "actions": [
+        "fill"
+      ],
+      "operatorActions": [
+        "fill"
+      ],
+      "risk": "policy-controlled"
+    },
+    {
+      "target": "search",
+      "label": "Search",
+      "actions": [
+        "click"
+      ],
+      "operatorActions": [
+        "click"
+      ],
+      "risk": "policy-controlled"
+    },
+    {
+      "target": "restoreSession",
+      "label": "Restore demo session",
+      "actions": [],
+      "operatorActions": [
+        "click"
+      ],
+      "risk": "policy-controlled"
+    }
+  ],
+  "signal": {
+    "text": "Session expired",
+    "kind": "human",
+    "code": "SESSION_EXPIRED"
+  }
+}

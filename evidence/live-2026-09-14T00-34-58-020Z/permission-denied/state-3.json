@@ -1,0 +1,31 @@
+{
+  "controls": [
+    {
+      "target": "memberInput",
+      "label": "Member ID",
+      "actions": [
+        "fill"
+      ],
+      "operatorActions": [
+        "fill"
+      ],
+      "risk": "policy-controlled"
+    },
+    {
+      "target": "search",
+      "label": "Search",
+      "actions": [
+        "click"
+      ],
+      "operatorActions": [
+        "click"
+      ],
+      "risk": "policy-controlled"
+    }
+  ],
+  "signal": {
+    "text": "Permission denied",
+    "kind": "hard",
+    "code": "PERMISSION_DENIED"
+  }
+}

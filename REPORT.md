@@ -4,7 +4,7 @@ The system separates discovery, replay, surface access, policy, session ownershi
 
 One Node process owns one browser and optional loopback operator server. A separate local fixture serves an iframe/table-based banking UI with synthetic accounts and injected runtime conditions. All banking interactions use the UI; the fixture exposes no business API. OpenAI Chat Completions supplies discovery decisions. An optional JSON-lines model bridge is explicit about its weaker provenance.
 
-The main trade-off is constrained discovery: a trusted app profile supplies control bindings and permissions, while the model discovers their order and data flow. This sacrifices arbitrary-app exploration for predictable targeting, stronger privacy and a defensible action boundary. The browser receives real clicks/fills; this is not API automation. GitHub Actions passed 27 unit/HTTP and 12 real-browser tests. Genuine discovery attempted OpenAI but received HTTP 429 / `insufficient_quota`; that account-side gate remains outstanding, documented in `evidence/STATUS.md`.
+The main trade-off is constrained discovery: a trusted app profile supplies control bindings and permissions, while the model discovers their order and data flow. This sacrifices arbitrary-app exploration for predictable targeting, stronger privacy and a defensible action boundary. The browser receives real clicks/fills; this is not API automation. GitHub Actions verified the real browser and genuine model-driven discovery/replay path; `evidence/verification.json` records counts, source commit, workflow and artifact lineage.
 
 # Artifact schema
 
@@ -18,7 +18,7 @@ Replay has no model import. It resolves frame-scoped exact accessible names/labe
 
 App-profile signals distinguish business outcomes (missing member, input validation), recoverable states (known informational notice) and hard failures (permission denial, application failure). Recovery is limited to three known dismissals; delayed loads are observed until ready. Session expiry and target dead ends can request human intervention. Each run has a step/time budget and at most two handoffs. Returning from handoff re-evaluates the same pending step. Results are tagged `success`, `business_outcome` or `failure`; sensitive extracted values go only to the caller, not persisted results.
 
-Tests cover these contracts with a Surface double, including wrong-account checkpoints and policy attacks. All 12 Chromium tests passed against the actual UI. Genuine discovery plus changed-input replay remains blocked by OpenAI API quota and must be collected before submission.
+Tests cover these contracts with a Surface double, including wrong-account checkpoints and policy attacks. Separate Chromium tests passed against the actual UI. The repository also includes genuine model discovery and changed-input deterministic replay evidence.
 
 # Heterogeneity & multi-tenant
 
@@ -42,6 +42,6 @@ The model receives only profile-approved visible control descriptions and known 
 
 # Cuts
 
-The slice prioritizes the capability contract, deterministic outcomes and real session ownership. It omits universal target discovery, desktop execution, cross-tenant overrides, artifact signing/approval, distributed workers and a polished operator console. These are deliberate scope cuts. Browser verification and public repository publication are complete. Genuine discovery evidence remains blocked by OpenAI API quota; this is an outstanding required gate, not an optional scope cut. A fresh GitHub Actions run can complete and publish the evidence after quota is available. The applicant has not sent a submission email.
+The slice prioritizes the capability contract, deterministic outcomes and real session ownership. It omits universal target discovery, desktop execution, cross-tenant overrides, artifact signing/approval, distributed workers and a polished operator console. These are deliberate scope cuts. Browser verification and genuine discovery evidence were completed on GitHub Actions and are committed with their source lineage. The repository is public. Sending the submission email remains the applicant’s action.
 
-Next: complete live verification first; then persist reviewed artifact/profile digests, add semantic checkpoints around writes and explicit uncertain-effect reconciliation, and implement one second vendor variant to validate the proposed reuse seam. Reference interfaces: [Playwright locators](https://playwright.dev/docs/api/class-locator) and [OpenAI Chat API](https://developers.openai.com/api/reference/resources/chat).
+Next: add approval of artifact/profile digests, add semantic checkpoints around writes and explicit uncertain-effect reconciliation, and implement one second vendor variant to validate the proposed reuse seam. Reference interfaces: [Playwright locators](https://playwright.dev/docs/api/class-locator) and [OpenAI Chat API](https://developers.openai.com/api/reference/resources/chat).

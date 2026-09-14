@@ -1,0 +1,78 @@
+{
+  "controls": [
+    {
+      "target": "memberInput",
+      "label": "Member ID",
+      "actions": [
+        "fill"
+      ],
+      "operatorActions": [
+        "fill"
+      ],
+      "risk": "policy-controlled"
+    },
+    {
+      "target": "search",
+      "label": "Search",
+      "actions": [
+        "click"
+      ],
+      "operatorActions": [
+        "click"
+      ],
+      "risk": "policy-controlled"
+    },
+    {
+      "target": "savingsHeading",
+      "label": "Savings account",
+      "actions": [
+        "check"
+      ],
+      "operatorActions": [
+        "check"
+      ],
+      "risk": "policy-controlled"
+    },
+    {
+      "target": "memberReference",
+      "label": "[aria-label=\"Member reference\"]",
+      "actions": [
+        "check"
+      ],
+      "operatorActions": [
+        "check"
+      ],
+      "risk": "policy-controlled"
+    },
+    {
+      "target": "balance",
+      "label": "[aria-label=\"Available balance\"]",
+      "actions": [
+        "read"
+      ],
+      "operatorActions": [
+        "read"
+      ],
+      "risk": "policy-controlled"
+    },
+    {
+      "target": "currency",
+      "label": "[aria-label=\"Currency\"]",
+      "actions": [
+        "read"
+      ],
+      "operatorActions": [
+        "read"
+      ],
+      "risk": "policy-controlled"
+    },
+    {
+      "target": "closeAccount",
+      "label": "Close account",
+      "actions": [],
+      "operatorActions": [],
+      "risk": "blocked"
+    }
+  ],
+  "signal": null
+}
