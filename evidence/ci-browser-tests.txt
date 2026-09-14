@@ -1,0 +1,95 @@
+Verified GitHub Actions test output
+Source commit: 795ef59ba7cd5294c144c32bd288eb5db9ee804a
+Run: https://github.com/adithyaharish/computer-use-automation/actions/runs/34792042424
+Job: test (103817952432), conclusion: success
+Note: real browser tests use the explicitly hand-authored example capability; they do not substitute for genuine LLM discovery.
+
+2026-09-14T00:14:42.4261879Z # Subtest: replay returns typed outputs, verifies identity, and has no model dependency
+2026-09-14T00:14:42.4269726Z ok 1 - replay returns typed outputs, verifies identity, and has no model dependency
+2026-09-14T00:14:42.4272689Z # Subtest: not found is a business outcome and stops before opening an account
+2026-09-14T00:14:42.4275021Z ok 2 - not found is a business outcome and stops before opening an account
+2026-09-14T00:14:42.4291658Z # Subtest: permission denial is a hard failure with evidence
+2026-09-14T00:14:42.4294233Z ok 3 - permission denial is a hard failure with evidence
+2026-09-14T00:14:42.4298309Z # Subtest: known notice is dismissed by a bounded deterministic recovery
+2026-09-14T00:14:42.4299870Z ok 4 - known notice is dismissed by a bounded deterministic recovery
+2026-09-14T00:14:42.5107534Z # Subtest: missing control times out with expected and observed diagnostics
+2026-09-14T00:14:42.5109299Z ok 5 - missing control times out with expected and observed diagnostics
+2026-09-14T00:14:42.5113351Z # Subtest: wrong member checkpoint suppresses otherwise valid outputs
+2026-09-14T00:14:42.5114583Z ok 6 - wrong member checkpoint suppresses otherwise valid outputs
+2026-09-14T00:14:42.5120288Z # Subtest: malformed amount is rejected without leaking the raw value
+2026-09-14T00:14:42.5121530Z ok 7 - malformed amount is rejected without leaking the raw value
+2026-09-14T00:14:42.5130346Z # Subtest: artifact cannot grant itself irreversible actions
+2026-09-14T00:14:42.5131510Z ok 8 - artifact cannot grant itself irreversible actions
+2026-09-14T00:14:42.5144761Z # Subtest: selector substitution is rejected against external policy
+2026-09-14T00:14:42.5146026Z ok 9 - selector substitution is rejected against external policy
+2026-09-14T00:14:42.5152487Z # Subtest: version mismatch fails closed before actions
+2026-09-14T00:14:42.5153543Z ok 10 - version mismatch fails closed before actions
+2026-09-14T00:14:42.5157864Z # Subtest: URL policy rejects lookalikes, credentials, queries, routes and schemes
+2026-09-14T00:14:42.5159524Z ok 11 - URL policy rejects lookalikes, credentials, queries, routes and schemes
+2026-09-14T00:14:42.5163108Z # Subtest: strict schema rejects arbitrary code, unknown fields, duplicate outputs and literal data
+2026-09-14T00:14:42.5164518Z ok 12 - strict schema rejects arbitrary code, unknown fields, duplicate outputs and literal data
+2026-09-14T00:14:42.5167043Z # Subtest: amounts stay exact decimal strings
+2026-09-14T00:14:42.5167667Z ok 13 - amounts stay exact decimal strings
+2026-09-14T00:14:42.5169903Z # Subtest: logs and persisted results omit invocation data and output values
+2026-09-14T00:14:42.5170972Z ok 14 - logs and persisted results omit invocation data and output values
+2026-09-14T00:14:42.5172679Z # Subtest: session expiry without an operator returns an intervention request indicator
+2026-09-14T00:14:42.5173336Z ok 15 - session expiry without an operator returns an intervention request indicator
+2026-09-14T00:14:42.5215148Z # Subtest: handoff resumes on the identical surface after a simulated operator action
+2026-09-14T00:14:42.5216386Z ok 16 - handoff resumes on the identical surface after a simulated operator action
+2026-09-14T00:14:42.5403238Z # Subtest: abandoned intervention times out rather than hanging
+2026-09-14T00:14:42.5404535Z ok 17 - abandoned intervention times out rather than hanging
+2026-09-14T00:14:42.5407896Z # Subtest: control cannot be acquired twice or resumed during an in-flight action
+2026-09-14T00:14:42.5409164Z ok 18 - control cannot be acquired twice or resumed during an in-flight action
+2026-09-14T00:14:42.5412033Z # Subtest: test-double discovery records parameters, not literal values (not real LLM evidence)
+2026-09-14T00:14:42.5414185Z ok 19 - test-double discovery records parameters, not literal values (not real LLM evidence)
+2026-09-14T00:14:42.5417323Z # Subtest: model cannot declare success without extracting the declared outputs
+2026-09-14T00:14:42.5418493Z ok 20 - model cannot declare success without extracting the declared outputs
+2026-09-14T00:14:42.5421913Z # Subtest: invalid model actions are rejected before execution
+2026-09-14T00:14:42.5422935Z ok 21 - invalid model actions are rejected before execution
+2026-09-14T00:14:42.5425958Z # Subtest: API adapter passes structured observations and does not persist provider bodies
+2026-09-14T00:14:42.5427731Z ok 22 - API adapter passes structured observations and does not persist provider bodies
+2026-09-14T00:14:42.5513622Z # Subtest: demo serves a real iframe UI with synthetic data and no business API
+2026-09-14T00:14:42.5514834Z ok 23 - demo serves a real iframe UI with synthetic data and no business API
+2026-09-14T00:14:42.5517899Z # Subtest: operator HTTP endpoint authenticates and transfers real controller ownership
+2026-09-14T00:14:42.5519205Z ok 24 - operator HTTP endpoint authenticates and transfers real controller ownership
+2026-09-14T00:14:42.5527805Z # tests 24
+2026-09-14T00:14:42.5528142Z # suites 0
+2026-09-14T00:14:42.5528451Z # pass 24
+2026-09-14T00:14:42.5528716Z # fail 0
+2026-09-14T00:14:42.5528907Z # cancelled 0
+2026-09-14T00:14:42.5529120Z # skipped 0
+2026-09-14T00:14:42.5529306Z # todo 0
+2026-09-14T00:14:42.5529521Z # duration_ms 203.245182
+2026-09-14T00:14:43.9973597Z # Subtest: live browser: 12345 -> success
+2026-09-14T00:14:43.9983734Z ok 1 - live browser: 12345 -> success
+2026-09-14T00:14:44.5950240Z # Subtest: live browser: 67890 -> success
+2026-09-14T00:14:44.5954558Z ok 2 - live browser: 67890 -> success
+2026-09-14T00:14:45.0694841Z # Subtest: live browser: 99999 -> MEMBER_NOT_FOUND
+2026-09-14T00:14:45.0699058Z ok 3 - live browser: 99999 -> MEMBER_NOT_FOUND
+2026-09-14T00:14:45.5484932Z # Subtest: live browser: bad -> VALIDATION_ERROR
+2026-09-14T00:14:45.5488278Z ok 4 - live browser: bad -> VALIDATION_ERROR
+2026-09-14T00:14:46.0159058Z # Subtest: live browser: 40300 -> PERMISSION_DENIED
+2026-09-14T00:14:46.0160823Z ok 5 - live browser: 40300 -> PERMISSION_DENIED
+2026-09-14T00:14:46.4631214Z # Subtest: live browser: 50000 -> APP_UNAVAILABLE
+2026-09-14T00:14:46.4632962Z ok 6 - live browser: 50000 -> APP_UNAVAILABLE
+2026-09-14T00:14:47.8953357Z # Subtest: live browser: 40800 -> success
+2026-09-14T00:14:47.8957935Z ok 7 - live browser: 40800 -> success
+2026-09-14T00:14:48.5139337Z # Subtest: live browser: 40900 -> success
+2026-09-14T00:14:48.5141698Z ok 8 - live browser: 40900 -> success
+2026-09-14T00:14:49.0872847Z # Subtest: live browser: 40100 -> SESSION_EXPIRED
+2026-09-14T00:14:49.0873949Z ok 9 - live browser: 40100 -> SESSION_EXPIRED
+2026-09-14T00:14:49.8320498Z # Subtest: live browser: pause, simulated operator restore, resume same browser page
+2026-09-14T00:14:49.8322445Z ok 10 - live browser: pause, simulated operator restore, resume same browser page
+2026-09-14T00:14:50.0809675Z # Subtest: live browser: duplicate controls stop before ambiguous click
+2026-09-14T00:14:50.0811445Z ok 11 - live browser: duplicate controls stop before ambiguous click
+2026-09-14T00:14:50.3217728Z # Subtest: live browser: request policy blocks off-allowlist data transmission
+2026-09-14T00:14:50.3219304Z ok 12 - live browser: request policy blocks off-allowlist data transmission
+2026-09-14T00:14:50.3479606Z # tests 12
+2026-09-14T00:14:50.3480697Z # suites 0
+2026-09-14T00:14:50.3481017Z # pass 12
+2026-09-14T00:14:50.3481411Z # fail 0
+2026-09-14T00:14:50.3481796Z # cancelled 0
+2026-09-14T00:14:50.3482143Z # skipped 0
+2026-09-14T00:14:50.3482752Z # todo 0
+2026-09-14T00:14:50.3483453Z # duration_ms 7638.72101
+

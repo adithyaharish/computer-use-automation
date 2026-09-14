@@ -49,10 +49,10 @@ The included workflow can complete live verification on a GitHub-hosted Ubuntu r
 1. Create a public repository with `main` as its default branch, and give the connected GitHub app access to that repository.
 2. In the repository, add an Actions secret named `OPENAI_API_KEY`. Optionally add an Actions variable `OPENAI_MODEL` for another supported model. Do not place a key in a file or chat message.
 3. Publish this source to `main`. The workflow runs unit/HTTP and real-browser tests, then genuine model discovery and changed-input replays. If the secret is missing, the evidence job fails explicitly.
-4. Review the downloaded `live-evidence-<commit>` workflow artifact, then commit the verified sanitized evidence into `/evidence/` for the evaluator. Actions artifacts alone are temporary; they are not a substitute for the repository deliverable.
+4. After successful verification, the workflow validates artifact lineage and commits the sanitized evidence, dependency lockfile, and updated verification documentation into the repository. It also retains a downloadable `live-evidence-<commit>` workflow artifact. A failed run never updates the verification status.
 5. The handoff evidence labels its actor as a scripted test client. The interactive operator panel is still available for a real-person demonstration.
 
-The secret is supplied only to the live-evidence step on `main`, never to pull-request tests. The workflow does not automatically alter the repository or claim that an unexecuted run passed.
+The secret is supplied only to the live-evidence step on `main`, never to pull-request tests. Only the successful evidence job receives repository write access. Its finalizer checks real discovery provenance, replay results, checkpoint verification and same-artifact lineage before publishing the evidence. Failed runs never claim success.
 
 ## Exact individual discovery and replay commands
 

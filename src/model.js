@@ -16,21 +16,35 @@ class OpenAIModel {
     if(!key)throw new FlowError('MODEL_KEY_MISSING');this.key=key;this.model=model;this.fetch=fetchImpl;this.mode='openai';this.calls=0;
   }
   async decide(request) {
-    this.calls++;
-    let response;
-    try{response=await this.fetch('https://api.openai.com/v1/chat/completions',{
-      method:'POST',headers:{Authorization:`Bearer ${this.key}`,'Content-Type':'application/json'},
-      body:JSON.stringify({model:this.model,response_format:{type:'json_object'},messages:[{role:'system',content:SYSTEM},{role:'user',content:JSON.stringify(request)}]}),
-      signal:AbortSignal.timeout(30000)
-    });}catch{throw new FlowError('MODEL_UNAVAILABLE');}
-    if(!response.ok){
-      // Persist only recognized provider error codes, never its message or raw response body.
-      let body;try{body=await response.json();}catch{}
-      const allowed=['invalid_api_key','insufficient_quota','model_not_found','rate_limit_exceeded','invalid_parameter','unsupported_value','permission_denied'];
-      const providerCode=allowed.includes(body?.error?.code)?body.error.code:'unclassified';
-      throw new FlowError('MODEL_HTTP_ERROR',{httpStatus:response.status,providerCode});
+    for(let attempt=0;attempt<3;attempt++){
+      this.calls++;
+      let response;
+      try{response=await this.fetch('https://api.openai.com/v1/chat/completions',{
+        method:'POST',headers:{Authorization:`Bearer ${this.key}`,'Content-Type':'application/json'},
+        body:JSON.stringify({model:this.model,response_format:{type:'json_object'},messages:[{role:'system',content:SYSTEM},{role:'user',content:JSON.stringify(request)}]}),
+        signal:AbortSignal.timeout(30000)
+      });}catch{throw new FlowError('MODEL_UNAVAILABLE');}
+      if(!response.ok){
+        // Interpret provider diagnostics in memory; persist only a fixed, safe classification.
+        let body;try{body=await response.json();}catch{}
+        const allowed=['invalid_api_key','insufficient_quota','model_not_found','rate_limit_exceeded','invalid_parameter','unsupported_value','permission_denied'];
+        const error=body?.error;
+        const description=[error?.code,error?.type,error?.message,typeof error==='string'?error:''].filter(x=>typeof x==='string').join(' ').slice(0,4000).toLowerCase();
+        let providerCode=allowed.includes(error?.code)?error.code:allowed.includes(error?.type)?error.type:'unclassified';
+        if(providerCode==='unclassified'){
+          if(/quota|billing|credit|balance|payment|funds/.test(description))providerCode='insufficient_quota';
+          else if(/rate.limit|too many requests/.test(description))providerCode='rate_limit_exceeded';
+          else if(/api.key|authentication/.test(description))providerCode='invalid_api_key';
+        }
+        if(response.status===429&&providerCode!=='insufficient_quota'&&attempt<2){
+          const retryAfter=Number(response.headers?.get?.('retry-after'));
+          await new Promise(resolve=>setTimeout(resolve,Number.isFinite(retryAfter)&&retryAfter>0?Math.min(retryAfter*1000,2000):500));
+          continue;
+        }
+        throw new FlowError('MODEL_HTTP_ERROR',{httpStatus:response.status,providerCode});
+      }
+      try{const body=await response.json();return JSON.parse(body.choices[0].message.content);}catch{throw new FlowError('MODEL_INVALID_JSON');}
     }
-    try{const body=await response.json();return JSON.parse(body.choices[0].message.content);}catch{throw new FlowError('MODEL_INVALID_JSON');}
   }
 }
 class StdioModel {

@@ -104,3 +104,14 @@ test('API adapter passes structured observations and does not persist provider b
   const model=new OpenAIModel({key:'test-only-key',fetchImpl:async()=>({ok:false,status:429,json:async()=>({error:{code:'insufficient_quota',message:'sensitive-provider-message'}})})});
   await assert.rejects(model.decide({}),e=>e.code==='MODEL_HTTP_ERROR'&&e.details.httpStatus===429&&e.details.providerCode==='insufficient_quota'&&!JSON.stringify(e).includes('sensitive-provider-message'));
  });
+
+test('quota can be classified from provider type or message without being retried',async()=>{
+ const model=new OpenAIModel({key:'test-only-key',fetchImpl:async()=>({ok:false,status:429,json:async()=>({error:{type:'billing_limit_user_error',message:'Credit balance exhausted: private-account-description'}})})});
+ await assert.rejects(model.decide({}),e=>e.details.providerCode==='insufficient_quota'&&!JSON.stringify(e).includes('private-account-description'));
+ assert.equal(model.calls,1);
+});
+test('transient rate limits have bounded retries and can recover',async()=>{
+ let calls=0;
+ const model=new OpenAIModel({key:'test-only-key',fetchImpl:async()=>++calls===1?{ok:false,status:429,headers:{get:()=>'.001'},json:async()=>({error:{code:'rate_limit_exceeded'}})}:{ok:true,json:async()=>({choices:[{message:{content:'{"done":true,"reason":"verify_goal"}'}}]})}});
+ assert.equal((await model.decide({})).done,true);assert.equal(calls,2);
+});
