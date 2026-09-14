@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "name": "get_savings_balance",
+  "version": 1,
+  "profile": {
+    "id": "demo-bank-v1",
+    "vendor": "CedarCore",
+    "appVersion": "1"
+  },
+  "inputs": {
+    "member_id": {
+      "type": "string",
+      "sensitive": true
+    }
+  },
+  "outputs": {
+    "balance": {
+      "type": "decimal",
+      "sensitive": true
+    },
+    "currency": {
+      "type": "currency",
+      "sensitive": false
+    }
+  },
+  "targets": {
+    "memberInput": {
+      "frame": "workspace",
+      "strategy": "label",
+      "value": "Member ID"
+    },
+    "search": {
+      "frame": "workspace",
+      "strategy": "role",
+      "role": "button",
+      "value": "Search"
+    },
+    "openSavings": {
+      "frame": "workspace",
+      "strategy": "role",
+      "role": "button",
+      "value": "Open savings"
+    },
+    "savingsHeading": {
+      "frame": "workspace",
+      "strategy": "role",
+      "role": "heading",
+      "value": "Savings account"
+    },
+    "memberReference": {
+      "frame": "workspace",
+      "strategy": "css",
+      "value": "[aria-label=\"Member reference\"]"
+    },
+    "balance": {
+      "frame": "workspace",
+      "strategy": "css",
+      "value": "[aria-label=\"Available balance\"]"
+    },
+    "currency": {
+      "frame": "workspace",
+      "strategy": "css",
+      "value": "[aria-label=\"Currency\"]"
+    },
+    "acknowledge": {
+      "frame": "workspace",
+      "strategy": "role",
+      "role": "button",
+      "value": "Acknowledge notice"
+    },
+    "restoreSession": {
+      "frame": "workspace",
+      "strategy": "role",
+      "role": "button",
+      "value": "Restore demo session"
+    },
+    "closeAccount": {
+      "frame": "workspace",
+      "strategy": "role",
+      "role": "button",
+      "value": "Close account"
+    }
+  },
+  "steps": [
+    {
+      "action": "fill",
+      "target": "memberInput",
+      "input": "member_id"
+    },
+    {
+      "action": "click",
+      "target": "search"
+    },
+    {
+      "action": "click",
+      "target": "openSavings"
+    },
+    {
+      "action": "read",
+      "target": "balance",
+      "output": "balance"
+    },
+    {
+      "action": "read",
+      "target": "currency",
+      "output": "currency"
+    }
+  ],
+  "checkpoints": [
+    {
+      "action": "check",
+      "target": "savingsHeading"
+    },
+    {
+      "action": "check",
+      "target": "memberReference",
+      "equalsInput": "member_id"
+    }
+  ],
+  "provenance": {
+    "mode": "example",
+    "model": "none-hand-authored-example",
+    "recordedAt": "2026-09-13T23:38:29.145Z"
+  }
+}

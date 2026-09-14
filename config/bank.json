@@ -1,0 +1,143 @@
+{
+  "id": "demo-bank-v1",
+  "vendor": "CedarCore",
+  "appVersion": "1",
+  "origin": "http://127.0.0.1:4310",
+  "entry": "/bank",
+  "routes": [
+    "/bank",
+    "/workspace",
+    "/favicon.ico"
+  ],
+  "allowedActions": [
+    "click",
+    "fill",
+    "read",
+    "check"
+  ],
+  "targets": {
+    "memberInput": {
+      "frame": "workspace",
+      "strategy": "label",
+      "value": "Member ID"
+    },
+    "search": {
+      "frame": "workspace",
+      "strategy": "role",
+      "role": "button",
+      "value": "Search"
+    },
+    "openSavings": {
+      "frame": "workspace",
+      "strategy": "role",
+      "role": "button",
+      "value": "Open savings"
+    },
+    "savingsHeading": {
+      "frame": "workspace",
+      "strategy": "role",
+      "role": "heading",
+      "value": "Savings account"
+    },
+    "memberReference": {
+      "frame": "workspace",
+      "strategy": "css",
+      "value": "[aria-label=\"Member reference\"]"
+    },
+    "balance": {
+      "frame": "workspace",
+      "strategy": "css",
+      "value": "[aria-label=\"Available balance\"]"
+    },
+    "currency": {
+      "frame": "workspace",
+      "strategy": "css",
+      "value": "[aria-label=\"Currency\"]"
+    },
+    "acknowledge": {
+      "frame": "workspace",
+      "strategy": "role",
+      "role": "button",
+      "value": "Acknowledge notice"
+    },
+    "restoreSession": {
+      "frame": "workspace",
+      "strategy": "role",
+      "role": "button",
+      "value": "Restore demo session"
+    },
+    "closeAccount": {
+      "frame": "workspace",
+      "strategy": "role",
+      "role": "button",
+      "value": "Close account"
+    }
+  },
+  "grants": {
+    "memberInput": [
+      "fill"
+    ],
+    "search": [
+      "click"
+    ],
+    "openSavings": [
+      "click"
+    ],
+    "savingsHeading": [
+      "check"
+    ],
+    "memberReference": [
+      "check"
+    ],
+    "balance": [
+      "read"
+    ],
+    "currency": [
+      "read"
+    ],
+    "acknowledge": [
+      "click"
+    ]
+  },
+  "operatorGrants": {
+    "restoreSession": [
+      "click"
+    ]
+  },
+  "riskyTargets": [
+    "closeAccount"
+  ],
+  "signals": [
+    {
+      "text": "No such member",
+      "kind": "business",
+      "code": "MEMBER_NOT_FOUND"
+    },
+    {
+      "text": "Member ID must contain five digits",
+      "kind": "business",
+      "code": "VALIDATION_ERROR"
+    },
+    {
+      "text": "Permission denied",
+      "kind": "hard",
+      "code": "PERMISSION_DENIED"
+    },
+    {
+      "text": "Application unavailable",
+      "kind": "hard",
+      "code": "APP_UNAVAILABLE"
+    },
+    {
+      "text": "Session expired",
+      "kind": "human",
+      "code": "SESSION_EXPIRED"
+    },
+    {
+      "text": "Service notice",
+      "kind": "recoverable",
+      "code": "KNOWN_NOTICE",
+      "actionTarget": "acknowledge"
+    }
+  ]
+}

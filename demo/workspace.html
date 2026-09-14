@@ -1,0 +1,25 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Member workspace</title>
+<style>
+body{font:15px system-ui;color:#193c33;margin:32px;background:#edf0f2}main{max-width:1050px;margin:auto}.eyebrow{font-size:12px;letter-spacing:2px;color:#62766e}h1{font-size:32px;margin:10px 0 24px}table{border-collapse:collapse;width:100%;background:white;border:1px solid #d5dfd9}td,th{text-align:left;padding:18px 22px;border-bottom:1px solid #e5ebe7}th{font-size:12px;text-transform:uppercase;color:#62766e}input{padding:12px;border:1px solid #a0b3a8;font-size:16px;border-radius:4px}button{padding:12px 18px;background:#205e47;border:0;border-radius:4px;color:white;font-size:14px;cursor:pointer}button:disabled{opacity:.5}.danger{background:#8c3737}.card{background:white;padding:28px;border:1px solid #d5dfd9;margin:18px 0}.amount{font-size:42px;font-weight:650;letter-spacing:-1px}.muted{color:#61786c}dialog{border:1px solid #c0ccc4;border-radius:6px;padding:28px}dialog::backdrop{background:#14271c66}footer{font-size:12px;color:#64776d;margin-top:24px}
+</style></head><body><main>
+<div class="eyebrow">OPERATIONS / ACCOUNTS</div><h1>Member lookup</h1>
+<table><tr><td><label for="lookup">Member ID</label></td><td><input id="lookup" autocomplete="off" data-private></td><td><button onclick="searchMember()">Search</button></td></tr></table>
+<div id="result" aria-live="polite"></div><footer>Training fixture: 12345 and 67890 · Not found: 99999 · Denied: 40300 · Expired session: 40100 · Slow load: 40800 · Notice: 40900 · App error: 50000</footer>
+</main><script>
+let selected = '', restored = false;
+const result = document.getElementById('result');
+const accounts = {'12345':'2480.75','67890':'8150.20','40100':'125.00','40800':'330.50','40900':'900.00'};
+async function searchMember(){
+ selected=document.getElementById('lookup').value;
+ if(!/^\d{5}$/.test(selected)){result.innerHTML='<p role="alert">Member ID must contain five digits</p>';return;}
+ if(selected==='40300'){result.innerHTML='<p role="alert">Permission denied</p>';return;}
+ if(selected==='50000'){result.innerHTML='<p role="alert">Application unavailable</p>';return;}
+ if(!Object.hasOwn(accounts,selected)){result.innerHTML='<p role="status">No such member</p>';return;}
+ if(selected==='40100'&&!restored){result.innerHTML='<div class="card"><h2>Session expired</h2><p>An operator must restore this demo session.</p><button onclick="restored=true;showMember()">Restore demo session</button></div>';return;}
+ if(selected==='40800'){result.innerHTML='<p role="status">Loading account…</p>';await new Promise(r=>setTimeout(r,900));}
+ showMember();
+ if(selected==='40900'){result.insertAdjacentHTML('beforeend','<dialog><h2>Service notice</h2><p>This is a known informational notice.</p><button onclick="this.closest(\'dialog\').remove()">Acknowledge notice</button></dialog>');document.querySelector('dialog').showModal();}
+}
+function showMember(){result.innerHTML='<div class="card"><h2>Member overview</h2><p>Member <span data-private aria-label="Member reference">'+selected+'</span></p><table><tr><th>Account type</th><th>Status</th><th>Action</th></tr><tr><td>Savings</td><td>Active</td><td><button onclick="showSavings()">Open savings</button></td></tr></table></div>';}
+function showSavings(){result.innerHTML='<div class="card"><h2>Savings account</h2><p>Member <span data-private aria-label="Member reference">'+selected+'</span></p><p class="muted">Available balance</p><p><span class="amount" data-private aria-label="Available balance">'+accounts[selected]+'</span> <span aria-label="Currency">USD</span></p><hr><p class="muted">Account administration</p><button class="danger" onclick="result.innerHTML=\'<h2>Account closed</h2>\'">Close account</button></div>';}
+</script></body></html>

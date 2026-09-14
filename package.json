@@ -1,0 +1,19 @@
+{
+  "name": "computer-use-automation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Discover a UI workflow with an LLM; replay a typed capability without model decisions.",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "demo": "node src/cli.js demo",
+    "discover": "node src/cli.js discover",
+    "replay": "node src/cli.js replay",
+    "test": "node --test tests/*.test.js",
+    "test:browser": "node --test tests/browser.spec.js"
+  },
+  "dependencies": {
+    "playwright": "1.62.1"
+  }
+}

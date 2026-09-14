@@ -1,0 +1,51 @@
+name: Validate and collect evidence
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: verification-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install
+      - run: npx playwright install --with-deps chromium
+      - name: Unit and HTTP tests
+        run: npm test
+      - name: Real browser tests
+        run: npm run test:browser
+  live-evidence:
+    needs: test
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: npm install
+      - run: npx playwright install --with-deps chromium
+      - name: Genuine discovery, replay, exceptions and handoff verification
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: ${{ vars.OPENAI_MODEL || 'gpt-4.1-mini' }}
+        run: node scripts/collect-evidence.js
+      - name: Preserve evidence for review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: live-evidence-${{ github.sha }}
+          path: evidence/live-*/
+          if-no-files-found: warn
+          retention-days: 14

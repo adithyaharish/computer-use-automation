@@ -1,0 +1,9 @@
+{
+  "name": "get_savings_balance",
+  "inputs": {"member_id": {"type": "string", "sensitive": true}},
+  "outputs": {"balance": {"type": "decimal", "sensitive": true}, "currency": {"type": "currency", "sensitive": false}},
+  "checkpoints": [
+    {"action": "check", "target": "savingsHeading"},
+    {"action": "check", "target": "memberReference", "equalsInput": "member_id"}
+  ]
+}
