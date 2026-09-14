@@ -1,29 +1,17 @@
-# Evidence status — do not misrepresent test doubles as live runs
+# Verification status
 
-## Completed here
+The repository is public. **39 tests passed: 27 unit/HTTP and 12 real Chromium browser tests.**
 
-- Unit and real local HTTP tests: see `unit-http-tests.txt`.
-- Chromium availability check: `browser-check/availability.json`.
-- A working source implementation and separately runnable browser tests.
+- [GitHub Actions verification run](https://github.com/adithyaharish/computer-use-automation/actions/runs/34792494940)
+- [Saved CI test output](ci-browser-tests.txt)
+- [Machine-readable verification status](ci-verification.json)
 
-## Not completed here
+## Remaining required gate
 
-- Genuine API-backed LLM discovery against a live UI.
-- Live Chromium replay or live Chromium handoff verification.
-- Public GitHub repository publication or submission email.
+Genuine LLM discovery attempted its first API call and received **HTTP 429 / `insufficient_quota`**. The API account associated with the configured key needs available credits/quota. No genuine discovery artifact or successful learned-workflow replay has been fabricated. This project is **not yet submission-ready**.
 
-No model API key was configured. Chromium was not installed, its download timed out, and the hosted browser denied access to the local fixture. The browser security restriction was respected. These are environment limitations, not successful test results.
+The browser suite verifies replay behavior, exceptional outcomes, policy enforcement, and same-page handoff using the explicitly hand-authored example. That evidence does not replace a genuine discovery run.
 
-`../config/example-capability.json` is hand-authored (`provenance.mode = "example"`). No discovery/replay event logs have been fabricated. The unit tests use explicitly named test doubles and are not sufficient evidence for the assignment's must-have real discovery run.
+After resolving the API quota, start a **new** workflow run on the latest `main` branch. The workflow runs all tests, genuine discovery and changed-input replays, verifies real browser/HTTP handoff with a clearly labeled scripted operator, and publishes validated sanitized evidence to this repository. Its finalizer checks artifact lineage before declaring success.
 
-GitHub verification can also run the required real browser and API discovery checks using the included workflow and an `OPENAI_API_KEY` repository secret. No such workflow run has occurred yet.
-
-## Generate required evidence
-
-1. Install dependencies and Chromium as described in the README.
-2. Run `npm test` and `npm run test:browser`.
-3. Export `OPENAI_API_KEY` locally; run `node scripts/collect-evidence.js`.
-4. Follow the interactive handoff demonstration using the learned artifact.
-5. Inspect the new `evidence/live-*/` directory, replace this status with your actual verified results, and retain truthful provenance.
-
-The collector writes a genuine learned artifact, sanitized observations, model-selected action/reason records, deterministic replay logs, and success/failure results. Failure screenshots are masked. It does not fabricate output if any stage fails.
+The original local Chromium availability report is retained only as historical context. It is superseded by successful GitHub-hosted browser verification.
