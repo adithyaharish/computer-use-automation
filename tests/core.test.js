@@ -99,3 +99,8 @@ test('API adapter passes structured observations and does not persist provider b
  assert.equal((await model.decide({goal:'Test',observation:{controls:[]}})).done,true);assert.equal(sent.response_format.type,'json_object');assert.equal(model.calls,1);
  const bad=new OpenAIModel({key:'test-only-key',fetchImpl:async()=>({ok:false,status:401})});await assert.rejects(bad.decide({}),/MODEL_HTTP_ERROR/);
 });
+
+ test('API failures report safe error codes without exposing provider messages',async()=>{
+  const model=new OpenAIModel({key:'test-only-key',fetchImpl:async()=>({ok:false,status:429,json:async()=>({error:{code:'insufficient_quota',message:'sensitive-provider-message'}})})});
+  await assert.rejects(model.decide({}),e=>e.code==='MODEL_HTTP_ERROR'&&e.details.httpStatus===429&&e.details.providerCode==='insufficient_quota'&&!JSON.stringify(e).includes('sensitive-provider-message'));
+ });

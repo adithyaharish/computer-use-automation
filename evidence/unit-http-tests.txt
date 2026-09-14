@@ -1,32 +1,33 @@
-✔ replay returns typed outputs, verifies identity, and has no model dependency (8.807987ms)
-✔ not found is a business outcome and stops before opening an account (2.084594ms)
-✔ permission denial is a hard failure with evidence (3.161307ms)
-✔ known notice is dismissed by a bounded deterministic recovery (2.043965ms)
-✔ missing control times out with expected and observed diagnostics (77.165357ms)
-✔ wrong member checkpoint suppresses otherwise valid outputs (1.842579ms)
-✔ malformed amount is rejected without leaking the raw value (1.04072ms)
-✔ artifact cannot grant itself irreversible actions (0.645438ms)
-✔ selector substitution is rejected against external policy (1.5651ms)
-✔ version mismatch fails closed before actions (0.969896ms)
-✔ URL policy rejects lookalikes, credentials, queries, routes and schemes (0.743232ms)
-✔ strict schema rejects arbitrary code, unknown fields, duplicate outputs and literal data (0.788119ms)
-✔ amounts stay exact decimal strings (0.13616ms)
-✔ logs and persisted results omit invocation data and output values (0.842228ms)
-✔ session expiry without an operator returns an intervention request indicator (1.125424ms)
-✔ handoff resumes on the identical surface after a simulated operator action (6.300632ms)
-✔ abandoned intervention times out rather than hanging (11.717179ms)
-✔ control cannot be acquired twice or resumed during an in-flight action (0.901195ms)
-✔ test-double discovery records parameters, not literal values (not real LLM evidence) (2.380299ms)
-✔ model cannot declare success without extracting the declared outputs (0.712377ms)
-✔ invalid model actions are rejected before execution (0.870259ms)
-✔ API adapter passes structured observations and does not persist provider bodies (0.436511ms)
-✔ demo serves a real iframe UI with synthetic data and no business API (24.536172ms)
-✔ operator HTTP endpoint authenticates and transfers real controller ownership (14.175678ms)
-ℹ tests 24
+✔ replay returns typed outputs, verifies identity, and has no model dependency (6.50859ms)
+✔ not found is a business outcome and stops before opening an account (1.476108ms)
+✔ permission denial is a hard failure with evidence (2.097521ms)
+✔ known notice is dismissed by a bounded deterministic recovery (1.990023ms)
+✔ missing control times out with expected and observed diagnostics (76.495396ms)
+✔ wrong member checkpoint suppresses otherwise valid outputs (1.986919ms)
+✔ malformed amount is rejected without leaking the raw value (0.978057ms)
+✔ artifact cannot grant itself irreversible actions (1.590536ms)
+✔ selector substitution is rejected against external policy (0.731765ms)
+✔ version mismatch fails closed before actions (0.663394ms)
+✔ URL policy rejects lookalikes, credentials, queries, routes and schemes (0.736993ms)
+✔ strict schema rejects arbitrary code, unknown fields, duplicate outputs and literal data (1.027719ms)
+✔ amounts stay exact decimal strings (0.197921ms)
+✔ logs and persisted results omit invocation data and output values (0.851391ms)
+✔ session expiry without an operator returns an intervention request indicator (1.1506ms)
+✔ handoff resumes on the identical surface after a simulated operator action (3.550175ms)
+✔ abandoned intervention times out rather than hanging (11.545789ms)
+✔ control cannot be acquired twice or resumed during an in-flight action (0.61975ms)
+✔ test-double discovery records parameters, not literal values (not real LLM evidence) (2.027849ms)
+✔ model cannot declare success without extracting the declared outputs (1.349472ms)
+✔ invalid model actions are rejected before execution (0.359958ms)
+✔ API adapter passes structured observations and does not persist provider bodies (0.637676ms)
+✔ API failures report safe error codes without exposing provider messages (0.22426ms)
+✔ demo serves a real iframe UI with synthetic data and no business API (17.919094ms)
+✔ operator HTTP endpoint authenticates and transfers real controller ownership (10.304675ms)
+ℹ tests 25
 ℹ suites 0
-ℹ pass 24
+ℹ pass 25
 ℹ fail 0
 ℹ cancelled 0
 ℹ skipped 0
 ℹ todo 0
-ℹ duration_ms 214.045361
+ℹ duration_ms 204.229

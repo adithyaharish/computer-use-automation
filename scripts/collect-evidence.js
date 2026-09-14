@@ -12,7 +12,10 @@ function command(args,expectedStatus,expected={}){
  // Invocation values and output amounts are synthetic; no raw stdout is persisted.
  if(r.error)throw Error('Child process did not finish.');
  let result;try{result=JSON.parse(r.stdout);}catch{throw Error('No structured result was returned.');}
- if(result.status!==expectedStatus)throw Error(`Unexpected run status: ${result.status}/${result.code||''}`);
+ if(result.status!==expectedStatus){
+   console.error(JSON.stringify({status:result.status,code:result.code,step:result.step,httpStatus:result.httpStatus,providerCode:result.providerCode}));
+   throw Error('Run did not produce the expected outcome; see the sanitized diagnostic above.');
+ }
  if(expected.code && result.code!==expected.code)throw Error('Wrong exceptional outcome.');
  if(expected.balance && (result.outputs?.balance!==expected.balance || result.outputs?.currency!=='USD'))throw Error('Wrong extracted output.');
  if(expectedStatus==='success' && result.checkpointVerified!==true)throw Error('Checkpoint was not verified.');

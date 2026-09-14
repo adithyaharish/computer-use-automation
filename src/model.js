@@ -23,7 +23,13 @@ class OpenAIModel {
       body:JSON.stringify({model:this.model,response_format:{type:'json_object'},messages:[{role:'system',content:SYSTEM},{role:'user',content:JSON.stringify(request)}]}),
       signal:AbortSignal.timeout(30000)
     });}catch{throw new FlowError('MODEL_UNAVAILABLE');}
-    if(!response.ok)throw new FlowError('MODEL_HTTP_ERROR',{httpStatus:response.status});
+    if(!response.ok){
+      // Persist only recognized provider error codes, never its message or raw response body.
+      let body;try{body=await response.json();}catch{}
+      const allowed=['invalid_api_key','insufficient_quota','model_not_found','rate_limit_exceeded','invalid_parameter','unsupported_value','permission_denied'];
+      const providerCode=allowed.includes(body?.error?.code)?body.error.code:'unclassified';
+      throw new FlowError('MODEL_HTTP_ERROR',{httpStatus:response.status,providerCode});
+    }
     try{const body=await response.json();return JSON.parse(body.choices[0].message.content);}catch{throw new FlowError('MODEL_INVALID_JSON');}
   }
 }
